@@ -5,15 +5,7 @@ via **symlinks into this repo** — tweak a skill here and every agent session
 picks it up. ZCode (and Claude Code / Codex, if used later) discover skills
 from `~/.agents/skills/`.
 
-## Contents (24 skills)
-
-**Original (1)** — authored in this repo, no upstream:
-
-- `mcp-live-tool-test` — agent-driven live MCP testing: the agent calls every
-  exposed `mcp__<server>__<function>` tool itself (full sweep, PASS/FAIL/SKIP
-  table), incl. the ZCode stale-session ("Session not found") failure mode and
-  recovery. Written for the supreme-mcp-tools workspace but the procedure is
-  generic.
+## Contents (23 skills)
 
 **19 from [cursor/plugins](https://github.com/cursor/plugins) → `pstack/skills/`** (by poteto, MIT)
 — installed from commit `51a96e0dd838`:
