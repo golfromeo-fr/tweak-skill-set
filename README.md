@@ -55,16 +55,34 @@ per skill whether upstream changed since the recorded commit. To take an
 update: copy the upstream dir over the one here, refresh the `commit` field in
 its `.upstream.json`, commit.
 
-## Install on another machine
+## Install & sync
+
+GitHub is the source of truth. Clone, then install:
 
 ```bash
 git clone https://github.com/golfromeo-fr/tweak-skill-set.git ~/tweak-skill-set
 cd ~/tweak-skill-set
-for d in */; do ln -s "$PWD/$d" ~/.agents/skills/"$(basename "$d")"; done
+./install.sh
 ```
 
-If your agent doesn't discover skills through symlinks, run
-`./restore-copies.sh` to replace them with real copies.
+- **Link mode** (default) symlinks each skill into `~/.agents/skills`.
+  `git pull` is then the whole deployment — pulled changes are live at the
+  next session start, and an edit made through a symlink is an edit to this
+  repo's working copy, so `git status` here reveals live edits before a push.
+- **Copy mode** (`./install.sh --copy`) deploys real directory copies for
+  platforms/filesystems where links aren't wanted. Re-run it after every
+  pull, and never edit the live copy — drift is invisible in this mode.
+- Both modes are idempotent. An existing dir that *differs* from the repo
+  (usually local edits) is warned about and skipped, never clobbered —
+  `--force` to overwrite. `--uninstall` removes this repo's symlinks.
+- **Windows**: `install.ps1` — link mode uses directory junctions (no admin
+  rights or Developer Mode needed), `-Mode Copy` for copies.
+- `restore-copies.sh` converts an existing symlink install to real copies
+  (escape hatch if an agent's skill scanner doesn't follow links).
+
+To take an upstream update into this repo: run the checker below, copy the
+upstream dir over, refresh the `commit` field in its `.upstream.json`,
+commit, push.
 
 ## Licenses
 
