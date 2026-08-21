@@ -1,0 +1,14 @@
+{
+  "repo": "https://github.com/mattpocock/skills",
+  "path": "skills/engineering/prototype",
+  "commit": "0ab1b63a410a03d3627979a109c8695de27af954",
+  "installed": "2026-08-21",
+  "author": "Matt Pocock",
+  "license": "MIT",
+  "upstream_dir_contents": [
+    "LOGIC.md",
+    "SKILL.md",
+    "UI.md",
+    "agents"
+  ]
+}
